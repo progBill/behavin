@@ -41,4 +41,14 @@ def step_impl(context, someone, something):
 def step_impl(context, someone, something):
     assert not context.failed
 
+@given('{someone} raids the fridge')
+def step_impl(context, someone):
+    context.someone = someone
+    context.visitor = Visitor('ham')
+
+@when('I have bought {something}')
+def step_impl(context, something):
+    context.visitor.food.append(something)
+    assert something in context.visitor.food
+
 
